@@ -1,0 +1,123 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import type { Producto } from "@/domain/tipos";
+import {
+  buscarProductosAccion,
+  consultarDisponibilidadAccion,
+} from "@/app/vendedor/acciones";
+import { formatearPesos } from "@/lib/formato";
+import { LIMITE_BUSQUEDA_PRODUCTOS } from "@/lib/texto";
+
+interface Props {
+  /** Se llama al elegir un producto del resultado. */
+  onAgregar: (producto: Producto) => void;
+}
+
+/**
+ * Buscador en vivo por descripción O por código (no excluyente).
+ * Muestra stock y precio; al hacer clic agrega el producto a la cotización.
+ */
+export function BuscadorProductos({ onAgregar }: Props) {
+  const [termino, setTermino] = useState("");
+  const [resultados, setResultados] = useState<Producto[]>([]);
+  const [cargando, setCargando] = useState(false);
+  // Disponibilidad en vivo (World Office) por código; null = aún consultando.
+  const [disponibles, setDisponibles] = useState<Record<string, number>>({});
+  const temporizador = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    // Búsqueda con "debounce" para no consultar en cada tecla.
+    if (temporizador.current) clearTimeout(temporizador.current);
+    temporizador.current = setTimeout(async () => {
+      setCargando(true);
+      const encontrados = await buscarProductosAccion(termino);
+      setResultados(encontrados);
+      setDisponibles({});
+      setCargando(false);
+
+      // Consulta la disponibilidad en vivo de lo mostrado (no bloquea la lista).
+      if (encontrados.length > 0) {
+        const mapa = await consultarDisponibilidadAccion(
+          encontrados.map((p) => p.codigo),
+        );
+        setDisponibles(mapa);
+      }
+    }, 250);
+    return () => {
+      if (temporizador.current) clearTimeout(temporizador.current);
+    };
+  }, [termino]);
+
+  return (
+    <div className="space-y-3">
+      <input
+        type="search"
+        value={termino}
+        onChange={(e) => setTermino(e.target.value)}
+        placeholder="Buscar por descripción o código (ej. 'sello 7 octavos' o '0100178')"
+        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
+      />
+
+      <div className="max-h-72 overflow-y-auto rounded-lg border border-slate-200">
+        {cargando && resultados.length === 0 ? (
+          <p className="p-3 text-sm text-slate-400">Buscando…</p>
+        ) : resultados.length === 0 ? (
+          <p className="p-3 text-sm text-slate-400">Sin resultados.</p>
+        ) : (
+          <ul className="divide-y divide-slate-100">
+            {resultados.map((p) => {
+              // Disponibilidad en vivo de World Office; si aún no llega, usa el
+              // stock almacenado como valor provisional.
+              const enVivo = disponibles[p.codigo];
+              const disponible = enVivo ?? p.stock;
+              return (
+                <li
+                  key={p.id}
+                  className="flex items-center justify-between gap-3 p-3 hover:bg-slate-50"
+                >
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium text-slate-800">
+                      {p.descripcion}
+                    </p>
+                    <p className="text-xs text-slate-500">
+                      <span className="font-mono">{p.codigo}</span> ·{" "}
+                      {formatearPesos(p.precio)} ·{" "}
+                      {enVivo === undefined ? (
+                        <span title="Consultando World Office…">
+                          stock {p.stock}
+                        </span>
+                      ) : (
+                        <span
+                          className="font-medium text-brand-700"
+                          title="Disponibilidad en vivo desde World Office"
+                        >
+                          disponible {enVivo} (en vivo)
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => onAgregar(p)}
+                    disabled={disponible <= 0}
+                    className="shrink-0 rounded-md bg-brand-600 px-3 py-1 text-xs font-medium text-white transition hover:bg-brand-700 disabled:opacity-40"
+                  >
+                    Agregar
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+
+      {resultados.length >= LIMITE_BUSQUEDA_PRODUCTOS && (
+        <p className="text-xs text-slate-400">
+          Mostrando los primeros {LIMITE_BUSQUEDA_PRODUCTOS}. Escribe más para
+          afinar la búsqueda.
+        </p>
+      )}
+    </div>
+  );
+}
