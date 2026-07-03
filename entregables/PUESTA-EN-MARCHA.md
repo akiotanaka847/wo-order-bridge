@@ -70,7 +70,9 @@ Se cambia de uno a otro **solo con variables de entorno**, sin tocar el código.
 ### 2.1 Credenciales y datos de la cuenta (los aporta E.M. con su plan Enterprise)
 - [ ] **Token de API**: World Office → Configuración → Configuración General →
       sección **API** → copiar el token JWT. → `WORLDOFFICE_API_TOKEN`.
-      (Dura 12 h; si expira se regenera en el mismo lugar.)
+      (La fecha de vencimiento es **configurable** en World Office —hasta el
+      vencimiento de la licencia—; no expira a las 12 h. Cuando venza, se
+      regenera en el mismo lugar y se actualiza la variable, sin tocar código.)
 - [ ] Anotar los **IDs numéricos** de la cuenta (con el token, vía los GET de la
       API, o pedírselos a World Office):
   - [ ] `WORLDOFFICE_ID_EMPRESA` (empresa)
