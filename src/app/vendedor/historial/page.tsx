@@ -44,7 +44,7 @@ export default async function PaginaVendedorHistorial({
         descripcion="Tus cotizaciones, pedidos y facturas."
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4" data-guia="metricas-vendedor">
         <TarjetaEstadistica
           etiqueta="Cotizaciones"
           valor={cotizaciones.length}
@@ -71,7 +71,7 @@ export default async function PaginaVendedorHistorial({
         />
       </div>
 
-      <section className="space-y-4">
+      <section className="space-y-4" data-guia="historial-ordenes">
         <h2 className="text-lg font-semibold text-slate-900">Órdenes</h2>
         <TablaOrdenes
           ordenes={pagina.items}

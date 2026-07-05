@@ -24,7 +24,7 @@ export default async function PaginaAdminDiagnostico() {
         descripcion="Revisa el estado de la conexión con World Office antes de operar en vivo."
       />
 
-      <Tarjeta className="p-5">
+      <Tarjeta className="p-5" data-guia="chequeos-wo">
         <div className="mb-4 flex items-center gap-2 text-sm">
           <span className="text-slate-600">Modo actual:</span>
           <span

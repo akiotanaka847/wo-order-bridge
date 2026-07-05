@@ -30,6 +30,10 @@ Hay **tres tipos de usuario** (roles), cada uno con su propia pantalla:
 
 La plataforma te lleva automáticamente a la pantalla de tu rol.
 
+> **La primera vez** verás una **guía interactiva** que te recorre tu panel paso
+> a paso. Puedes verla de nuevo cuando quieras con el botón **Guía interactiva**,
+> abajo en el menú lateral.
+
 > **Para probar (modo demo):** en la pantalla de inicio hay un desplegable
 > "Credenciales de prueba" con cuentas de ejemplo para cada rol.
 

@@ -32,10 +32,16 @@ export default async function PaginaVendedorInventario({
       <EncabezadoPagina
         titulo="Inventario"
         descripcion={`${filtrados.length} de ${productos.length} productos. Consulta descripción, código y stock.`}
-        acciones={<FiltrosInventario />}
+        acciones={
+          <span data-guia="filtros-inventario">
+            <FiltrosInventario />
+          </span>
+        }
       />
 
-      <TablaInventario productos={pagina.items} />
+      <div data-guia="inventario-vendedor">
+        <TablaInventario productos={pagina.items} />
+      </div>
       <Paginador
         pagina={pagina.pagina}
         totalPaginas={pagina.totalPaginas}

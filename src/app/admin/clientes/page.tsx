@@ -24,6 +24,7 @@ export default async function PaginaAdminClientes({
         acciones={
           <Link
             href="/admin/clientes/nuevo"
+            data-guia="nuevo-cliente"
             className="rounded-lg bg-brand-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700"
           >
             + Nuevo cliente
@@ -31,7 +32,7 @@ export default async function PaginaAdminClientes({
         }
       />
 
-      <Tarjeta className="overflow-hidden">
+      <Tarjeta className="overflow-hidden" data-guia="tabla-clientes">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">

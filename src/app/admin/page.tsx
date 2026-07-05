@@ -96,7 +96,7 @@ export default async function PaginaAdminResumen() {
         descripcion="Vista general de usuarios, inventario y órdenes."
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4" data-guia="metricas-admin">
         <TarjetaEstadistica
           etiqueta="Usuarios"
           valor={usuarios.length}
@@ -123,7 +123,7 @@ export default async function PaginaAdminResumen() {
         />
       </div>
 
-      <Tarjeta className="p-5">
+      <Tarjeta className="p-5" data-guia="grafico-ventas">
         <div className="mb-4 flex items-end justify-between">
           <h3 className="text-sm font-semibold text-slate-700">
             Ventas del último mes
@@ -138,7 +138,7 @@ export default async function PaginaAdminResumen() {
         <GraficoAreaDiaria datos={ventasDiarias} />
       </Tarjeta>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-4 lg:grid-cols-2" data-guia="ventas-y-top">
         <Tarjeta className="p-5">
           <h3 className="mb-4 text-sm font-semibold text-slate-700">
             Ventas por vendedor
@@ -161,7 +161,7 @@ export default async function PaginaAdminResumen() {
         </Tarjeta>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-4 lg:grid-cols-2" data-guia="distribuciones">
         <Tarjeta className="p-5">
           <h3 className="mb-4 text-sm font-semibold text-slate-700">
             Órdenes por estado
@@ -203,7 +203,7 @@ export default async function PaginaAdminResumen() {
         </Tarjeta>
       </div>
 
-      <section className="space-y-4">
+      <section className="space-y-4" data-guia="ordenes-recientes">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-slate-900">
             Órdenes recientes
@@ -222,7 +222,7 @@ export default async function PaginaAdminResumen() {
         />
       </section>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2" data-guia="accesos-rapidos">
         <Link href="/admin/usuarios">
           <Tarjeta className="p-5 transition hover:border-brand-300 hover:shadow-md">
             <div className="flex items-center gap-3">

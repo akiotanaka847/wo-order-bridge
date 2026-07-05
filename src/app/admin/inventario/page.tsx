@@ -33,9 +33,12 @@ export default async function PaginaAdminInventario({
         descripcion={`${filtrados.length} de ${productos.length} productos. Busca, filtra por categoría y ajusta el stock.`}
         acciones={
           <>
-            <FiltrosInventario />
+            <span data-guia="filtros-inventario">
+              <FiltrosInventario />
+            </span>
             <Link
               href="/admin/inventario/nuevo"
+              data-guia="nuevo-producto"
               className="rounded-lg bg-brand-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700"
             >
               + Nuevo producto
@@ -44,10 +47,12 @@ export default async function PaginaAdminInventario({
         }
       />
 
-      <TablaInventario
-        productos={pagina.items}
-        celdaStock={(p) => <EditorStock productoId={p.id} stockActual={p.stock} />}
-      />
+      <div data-guia="tabla-inventario">
+        <TablaInventario
+          productos={pagina.items}
+          celdaStock={(p) => <EditorStock productoId={p.id} stockActual={p.stock} />}
+        />
+      </div>
       <Paginador
         pagina={pagina.pagina}
         totalPaginas={pagina.totalPaginas}

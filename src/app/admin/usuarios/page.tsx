@@ -27,14 +27,14 @@ export default async function PaginaAdminUsuarios({
         descripcion="Crea y elimina vendedores y contables. El acceso se da y se quita aquí."
       />
 
-      <Tarjeta className="p-5">
+      <Tarjeta className="p-5" data-guia="crear-usuario">
         <h2 className="mb-4 text-sm font-semibold text-slate-700">
           Crear usuario
         </h2>
         <FormularioUsuario />
       </Tarjeta>
 
-      <Tarjeta className="overflow-hidden">
+      <Tarjeta className="overflow-hidden" data-guia="tabla-usuarios">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">

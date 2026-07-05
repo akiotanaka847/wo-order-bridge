@@ -10,13 +10,15 @@ import type { ReactNode } from "react";
 export function Tarjeta({
   children,
   className = "",
+  ...atributos
 }: {
   children: ReactNode;
   className?: string;
-}) {
+} & React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={`rounded-xl border border-slate-200 bg-white shadow-sm ${className}`}
+      {...atributos}
     >
       {children}
     </div>

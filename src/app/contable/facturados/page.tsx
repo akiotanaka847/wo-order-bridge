@@ -30,19 +30,25 @@ export default async function PaginaContableFacturados({
       <EncabezadoPagina
         titulo="Facturados"
         descripcion="Pedidos ya convertidos en factura en World Office."
-        acciones={<FiltroVendedor vendedores={vendedores} />}
+        acciones={
+          <span data-guia="filtro-facturados">
+            <FiltroVendedor vendedores={vendedores} />
+          </span>
+        }
       />
-      <TablaOrdenes
-        ordenes={pagina.items}
-        mostrarVendedor
-        vacio="Aún no hay pedidos facturados."
-        accion={(o) => (
-          <div className="flex items-center justify-end gap-3">
-            <EnlaceImprimir ordenId={o.id} />
-            <EnlaceEstructuraWO ordenId={o.id} />
-          </div>
-        )}
-      />
+      <div data-guia="tabla-facturados">
+        <TablaOrdenes
+          ordenes={pagina.items}
+          mostrarVendedor
+          vacio="Aún no hay pedidos facturados."
+          accion={(o) => (
+            <div className="flex items-center justify-end gap-3">
+              <EnlaceImprimir ordenId={o.id} />
+              <EnlaceEstructuraWO ordenId={o.id} />
+            </div>
+          )}
+        />
+      </div>
       <Paginador
         pagina={pagina.pagina}
         totalPaginas={pagina.totalPaginas}

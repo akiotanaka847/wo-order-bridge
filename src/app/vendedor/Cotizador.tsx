@@ -123,16 +123,16 @@ export function Cotizador({
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       {/* Columna izquierda: buscador */}
-      <section className="space-y-3">
+      <section className="space-y-3" data-guia="buscador-productos">
         <h2 className="text-sm font-semibold text-slate-700">1. Buscar productos</h2>
         <BuscadorProductos onAgregar={agregar} />
       </section>
 
       {/* Columna derecha: cotización */}
-      <section className="space-y-4">
+      <section className="space-y-4" data-guia="area-cotizacion">
         <h2 className="text-sm font-semibold text-slate-700">2. Cotización</h2>
 
-        <div className="space-y-1">
+        <div className="space-y-1" data-guia="selector-cliente">
           <label className="text-sm font-medium text-slate-700">Cliente</label>
           <select
             value={clienteId}
@@ -233,7 +233,7 @@ export function Cotizador({
           </p>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex gap-3" data-guia="acciones-cotizacion">
           <button
             type="button"
             disabled={enviando || carrito.length === 0 || !clienteId}

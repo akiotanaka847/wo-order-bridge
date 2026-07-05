@@ -44,6 +44,104 @@ body {
   border-radius: 4px;
 }
 
+/* ---------------------------------------------------------------------------
+   Guía interactiva (driver.js): popover con la identidad de la marca.
+--------------------------------------------------------------------------- */
+.driver-popover.guia-marca {
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 340px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.22);
+  font-family: var(--font-sans);
+}
+.driver-popover.guia-marca .driver-popover-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.driver-popover.guia-marca .driver-popover-description {
+  margin-top: 4px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #475569;
+}
+.driver-popover.guia-marca .driver-popover-progress-text {
+  font-size: 12px;
+  color: #94a3b8;
+}
+.driver-popover.guia-marca .driver-popover-close-btn {
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  color: #94a3b8;
+  font-size: 17px;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+.driver-popover.guia-marca .driver-popover-close-btn:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+/* Portada y cierre de la guía: tarjeta destacada con acento de marca. */
+.driver-popover.guia-marca.guia-portada {
+  max-width: 380px;
+  padding: 28px 26px 18px;
+  text-align: center;
+  border-top: 3px solid var(--color-brand-600);
+  background:
+    radial-gradient(120% 90% at 50% 0%, var(--color-brand-50) 0%, #ffffff 62%);
+}
+.driver-popover.guia-marca.guia-portada .driver-popover-title {
+  display: block;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.driver-popover.guia-marca.guia-portada .driver-popover-description {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.driver-popover.guia-marca.guia-portada .driver-popover-footer {
+  margin-top: 18px;
+  align-items: center;
+}
+.driver-popover.guia-marca.guia-portada .driver-popover-navigation-btns button {
+  padding: 7px 18px;
+  font-size: 13.5px;
+}
+.driver-popover.guia-marca .driver-popover-navigation-btns button {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  background: #ffffff;
+  text-shadow: none;
+}
+/* Hover del botón secundario (Anterior): gris suave con texto oscuro. */
+.driver-popover.guia-marca
+  .driver-popover-navigation-btns
+  button:not(.driver-popover-next-btn):hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+/* Botón principal (Siguiente / ¡Listo!): siempre marca + texto blanco. */
+.driver-popover.guia-marca .driver-popover-navigation-btns .driver-popover-next-btn {
+  background: var(--color-brand-600);
+  border-color: var(--color-brand-600);
+  color: #ffffff;
+}
+.driver-popover.guia-marca
+  .driver-popover-navigation-btns
+  .driver-popover-next-btn:hover {
+  background: var(--color-brand-700);
+  border-color: var(--color-brand-700);
+  color: #ffffff;
+}
+
 /* Scrollbar discreto y moderno. */
 * {
   scrollbar-width: thin;

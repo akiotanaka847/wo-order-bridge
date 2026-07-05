@@ -24,17 +24,19 @@ export default async function PaginaAdminOrdenes({
         titulo="Órdenes"
         descripcion="Todas las cotizaciones, pedidos y facturas de la operación."
       />
-      <TablaOrdenes
-        ordenes={pagina.items}
-        mostrarVendedor
-        vacio="Aún no hay órdenes."
-        accion={(o) => (
-          <div className="flex items-center justify-end gap-3">
-            <EnlaceImprimir ordenId={o.id} />
-            <EnlaceEstructuraWO ordenId={o.id} />
-          </div>
-        )}
-      />
+      <div data-guia="tabla-ordenes">
+        <TablaOrdenes
+          ordenes={pagina.items}
+          mostrarVendedor
+          vacio="Aún no hay órdenes."
+          accion={(o) => (
+            <div className="flex items-center justify-end gap-3">
+              <EnlaceImprimir ordenId={o.id} />
+              <EnlaceEstructuraWO ordenId={o.id} />
+            </div>
+          )}
+        />
+      </div>
       <Paginador
         pagina={pagina.pagina}
         totalPaginas={pagina.totalPaginas}

@@ -7,6 +7,7 @@ import { useState, type ReactNode } from "react";
 import { accionCerrarSesion } from "@/app/acciones-sesion";
 import type { Usuario } from "@/domain/tipos";
 import { ETIQUETA_ROL } from "@/lib/roles";
+import { BotonGuia } from "@/components/BotonGuia";
 import { IconoCerrar, IconoMenu, IconoSalir } from "@/components/Iconos";
 import { Logo } from "@/components/Logo";
 
@@ -162,6 +163,7 @@ function Sidebar({
             <p className="truncate text-xs text-slate-400">{usuario.email}</p>
           </div>
         </div>
+        <BotonGuia rol={usuario.rol} usuarioId={usuario.id} alIniciar={onNavegar} />
         <form action={accionCerrarSesion}>
           <button
             type="submit"

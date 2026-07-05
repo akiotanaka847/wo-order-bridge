@@ -49,16 +49,19 @@ export default async function PaginaContable({
           <>
             <a
               href="/api/worldoffice/estructuras"
+              data-guia="descargar-lote"
               className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-brand-500 hover:text-brand-700"
             >
               Descargar estructuras (lote)
             </a>
-            <FiltroVendedor vendedores={vendedores} />
+            <span data-guia="filtro-vendedor">
+              <FiltroVendedor vendedores={vendedores} />
+            </span>
           </>
         }
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4" data-guia="metricas-contable">
         <TarjetaEstadistica
           etiqueta="Pedidos por facturar"
           valor={pedidos.length}
@@ -85,7 +88,7 @@ export default async function PaginaContable({
         />
       </div>
 
-      <section className="space-y-4">
+      <section className="space-y-4" data-guia="tabla-pedidos">
         <h2 className="text-lg font-semibold text-slate-900">
           Pedidos en tiempo real
         </h2>
